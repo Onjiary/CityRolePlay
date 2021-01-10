@@ -16,6 +16,18 @@ namespace CityRoleplay
         {
             player.Model = (uint)PedModel.Lost02GMY;
             player.Spawn(new AltV.Net.Data.Position(0, 0, 75),0);
+
+
+            if(PlayerDatabase.DoesPlayerNameExists(player.Name))
+            {
+                player.LoadPlayer(player.Name);
+            }
+            else
+            {
+                player.CreatePlayer(player.Name, "1234");
+            }
+            //player.SendNotification($"Cash: ~b~{player.Cash}$");
+            player.SendNotification($"Cash: ~b~{player.Cash}$");
         }
 
         [ScriptEvent(ScriptEventType.PlayerDead)]
