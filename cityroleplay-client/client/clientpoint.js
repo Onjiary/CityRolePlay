@@ -1,7 +1,7 @@
 /// <reference types="@altv/types-client" />
 /// <reference types="@altv/types-natives" />
 import * as alt from 'alt';
-import Fingerpointing from 'fingerpointing';
+import Fingerpointing from 'client/fingerpointing.js';
 
 let pointing = new Fingerpointing();
 
