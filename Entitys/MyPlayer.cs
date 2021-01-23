@@ -14,16 +14,43 @@ namespace CityRoleplay.Entitys
         public string DisplayName { get; set; }
         public uint Cash { get; set; }
 
+        public int Team { get; set; }
+
         public MyPlayer(IntPtr nativePointer, ushort id) : base(nativePointer, id)
         {
             IsLoggedIn = false;
             Cash = 500;
+            SetTeam(0);
         }
 
         public void Login()
         {
             IsLoggedIn = true;
         }
+
+        public void SetTeam(int team)
+        {
+            Team = team;
+
+            int color;
+            switch(team)
+            {
+                case 0: //LSPD
+                    color = 3;
+                    break;
+                case 1: //Grove
+                    color = 2;
+                    break;
+                case 2:
+                    color = 7;
+                    break;
+                default:
+                    color = 4;
+                    break;
+            }
+            SetStreamSyncedMetaData("cityroleplay:teamcolor", color);
+        }
+
 
         public void SendNotification(string msg)
         {

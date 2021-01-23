@@ -33,19 +33,37 @@ namespace CityRoleplay
         }
 
 
+        [Command("pos")]
+        public void cmd_Spielerposition(MyPlayer player)
+        {
+            player.SendChatMessage($"Aktuelle Position: X: {player.Position.X} Y:{player.Position.Y} Z: {player.Position.Z}");
+        }
+
+
+
         [Command("veh")]
         public static void VehicleErstellen(MyPlayer player, string vehName, int r = 0, int g = 0, int b = 0)
         {
             uint vehHash = Alt.Hash(vehName);
-            if(!Enum.IsDefined(typeof(VehicleModel), vehHash))
+            /*if(!Enum.IsDefined(typeof(VehicleModel), vehHash))
             {
-                player.SendChatMessage("[Server] Ungültige Fahrzeugname!");
+                player.SendChatMessage("[Server] Ungültiger Fahrzeugname!");
                 return;
+            } */
+
+            VehicleEntity veh;
+
+            if(player.HasData("CityRoleplay:vehicle"))
+            {
+                player.GetData("CityRoleplay:vehicle", out veh);
+                veh.Remove();
             }
             //IVehicle veh = Alt.CreateVehicle(vehHash, GetRandomPostionAround(player.Position, 5.0F), player.Rotation);
-            VehicleEntity veh = new VehicleEntity(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
+            veh = new VehicleEntity(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
             veh.PrimaryColorRgb = new Rgba(Convert.ToByte(r), Convert.ToByte(g), Convert.ToByte(b), 255);
             veh.SecondaryColorRgb = new Rgba(Convert.ToByte(r), Convert.ToByte(g), Convert.ToByte(b), 255);
+
+            player.SetData("CityRoleplay:vehicle", veh);
 
             player.SendChatMessage("Fahrzeug gespawnt!");
         }
@@ -74,6 +92,12 @@ namespace CityRoleplay
             float x = pos.X + (float)rnd.NextDouble() * (range * 2) - range;
             float y = pos.Y + (float)rnd.NextDouble() * (range * 2) - range;
             return new Position(x, y, pos.Z);
+        }
+
+        [Command("team")]
+        public static void CMD_Team(MyPlayer player, int team)
+        {
+            player.SetTeam(team);
         }
     }
 }
