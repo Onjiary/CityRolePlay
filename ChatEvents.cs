@@ -68,6 +68,28 @@ namespace CityRoleplay
             player.SendChatMessage("Fahrzeug gespawnt!");
         }
 
+        [Command("vehicle")]
+        public static void Vehiclebauen(MyPlayer player, string vehName, int r = 0, int g = 0, int b = 0)
+        {
+            uint vehHash = Alt.Hash(vehName);
+            IVehicle veh = Alt.CreateVehicle(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
+            //veh = new VehicleEntity(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
+            //player.SetData("Cityroleplay:vehicle", veh);
+            player.SendNotification("Fahrzeuge ersteööt");
+        }
+
+        [Command("waffengeben")]
+        public static void Waffengeben(MyPlayer player, string weaponName, int ammo)
+        {
+            uint weaponHash = Alt.Hash(weaponName);
+            if (!Enum.IsDefined(typeof(WeaponModel), weaponHash))
+            {
+                player.SendNotification("~r~[Server] Ungültiger Waffenname");
+                return;
+            }
+            player.GiveWeapon(weaponHash, ammo, true);
+        }
+    
         [Command("engine")]
         public static void CMD_Engine(MyPlayer player)
         {
@@ -75,6 +97,15 @@ namespace CityRoleplay
             VehicleEntity veh = (VehicleEntity)player.Vehicle;
             veh.ToggleEngine();
         }
+
+
+        [Command("hilfe")]
+        public static void CMD_HILFE(MyPlayer player)
+        {
+            player.SendNotification("Folgende befehle gibt es auf dem Server:  /hilfe(um zu sehen welche befehle es gibt),   /fix(auto reparieren), /pos(um die korrdianten zu bekommen)," +
+                " /team(um spieler Teams zu geben), /vehicle(fahrzeugnamen),  /veh(auto spawnt nur 1 was immer nach neu spawnen verschwindet), ");
+        }
+
 
         [Command("fix")]
         public static void CMD_FIXVEH(MyPlayer player)
