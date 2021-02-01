@@ -61,20 +61,20 @@ namespace CityRoleplay.Entitys
         {
             DisplayName = username;
 
-            DB_ID = PlayerDatabase.CreatePlayer(DisplayName, password);
+            //DB_ID = PlayerDatabase.CreatePlayer(DisplayName, password);
             Login();
         }
 
         public void LoadPlayer(string username)
         {
             DisplayName = username;
-            PlayerDatabase.LoadPlayer(this);
+            //PlayerDatabase.LoadPlayer(this);
             Login();
         }
 
         public void Save()
         {
-            PlayerDatabase.UpdatePlayer(this);
+            //PlayerDatabase.UpdatePlayer(this);
         }
 
     }

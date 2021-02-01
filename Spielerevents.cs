@@ -63,6 +63,7 @@ namespace CityRoleplay
         [ClientEvent("CityRolePlay:loginAttempt")]
         public void LogginAttempt(MyPlayer player, string username, string password)
         {
+            /*
             if (player.IsLoggedIn || username.Length < 4 || password.Length < 4) return;
 
             Regex regex = new Regex(@"([a-zA-Z]+)_([a-zA-Z]+)");
@@ -100,6 +101,7 @@ namespace CityRoleplay
                 }
                 player.SetData("CityRolePlay:loginAttempt", attempts);
             }
+            //*/
         }
 
 
@@ -108,6 +110,7 @@ namespace CityRoleplay
         [ClientEvent("CityRolePlay:registerAttempt")]
         public void RegisterAttempt(MyPlayer player, string username, string password)
         {
+            /*
             if (player.IsLoggedIn || username.Length < 4 || password.Length < 4) return;
 
             Regex regex = new Regex(@"([a-zA-Z]+)_([a-zA-Z]+)");
@@ -128,6 +131,7 @@ namespace CityRoleplay
                 player.Spawn(new Position(-1042.6945f, -2745.956f, 21.343628f), 0);
                 player.Emit("CityRolePlay:loginSuccess");
             }
+            //*/
         }
 
     }

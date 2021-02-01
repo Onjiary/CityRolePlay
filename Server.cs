@@ -11,7 +11,7 @@ namespace CityRoleplay
         public override void OnStart()
         {
             Alt.Log("<<<< Server wurde gestartet! >>>>");
-            new MyDatabase();
+            // new MyDatabase();
             Alt.Log("Blip Manager startet");
         }
 
