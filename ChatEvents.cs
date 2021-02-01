@@ -73,9 +73,9 @@ namespace CityRoleplay
         {
             uint vehHash = Alt.Hash(vehName);
             IVehicle veh = Alt.CreateVehicle(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
-            //veh = new VehicleEntity(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
-            //player.SetData("Cityroleplay:vehicle", veh);
-            player.SendNotification("Fahrzeuge ersteööt");
+            veh = new VehicleEntity(vehHash, GetRandomPostionAround(player.Position, 5.0f), player.Rotation);
+            player.SetData("Cityroleplay:vehicle", veh);
+            player.SendNotification("Fahrzeuge erstellt!");
         }
 
         [Command("waffengeben")]
