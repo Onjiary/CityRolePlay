@@ -8,6 +8,7 @@ import * as native from 'natives';
 let logginView;
 
 alt.on('connectionComplete', () =>{
+    alt.log("connectionComplete");
     /*
     logginView = new alt.WebView("http://resource/client/login/index.html");
     logginView.focus();
@@ -26,6 +27,7 @@ alt.on('connectionComplete', () =>{
 })
 
 alt.onServer('CityRolePlay:loginSuccess', () => {
+    alt.log("loginSuccess");
     /*
     alt.showCursor(false);
     alt.toggleGameControls(true);
@@ -35,5 +37,6 @@ alt.onServer('CityRolePlay:loginSuccess', () => {
 })
 
 alt.onServer('CityRolePlay:loginError', (type, msg) => {
+    alt.log("loginError");
     if(logginView) logginView.emit('showError', type, msg);
 })
