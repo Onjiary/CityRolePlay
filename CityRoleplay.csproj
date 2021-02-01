@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>D:\altv server/resources\CityRolePlay\</OutputPath>
+    <OutputPath>out/resources/CityRolePlay</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
